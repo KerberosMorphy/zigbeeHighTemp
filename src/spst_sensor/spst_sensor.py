@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from datetime import datetime, timedelta
 from time import sleep
 from typing import Optional
 
@@ -80,3 +81,14 @@ class SPSTSensor:
                 if state:
                     self.set_led(i, state)
                     sleep(0.2)
+
+    def pairing_led_mode(self) -> None:
+        current_state = False
+        current_time = datetime.now()
+        while not self.is_connected():
+            if datetime.now() - current_time > timedelta(seconds=15):
+                return
+            for led in range(7):
+                self.set_led(led, current_state)
+                current_state = not current_state
+            sleep(0.5)
