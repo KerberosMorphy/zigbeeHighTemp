@@ -29,3 +29,6 @@ class SPSTSensor:
 
     def get_sensor_data(self) -> int:
         return 1
+
+    def is_connected(self) -> bool:
+        return True
