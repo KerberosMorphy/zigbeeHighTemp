@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from time import sleep
 from typing import Optional
 
 CREOSOTE_THRESHOLD = 0
@@ -66,8 +67,16 @@ class SPSTSensor:
             self.led_states = new_state
             for led, state in enumerate(new_state):
                 self.set_led(led, state)
+
     def is_connected(self) -> bool:
         return True
 
     def set_led(self, led: int, state: bool) -> None:
         pass
+
+    def not_connected_led_mode(self) -> None:
+        while not self.is_connected():
+            for i, state in enumerate(self.led_states):
+                if state:
+                    self.set_led(i, state)
+                    sleep(0.2)
