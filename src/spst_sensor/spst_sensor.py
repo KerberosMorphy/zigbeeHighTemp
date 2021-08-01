@@ -32,3 +32,6 @@ class SPSTSensor:
 
     def is_connected(self) -> bool:
         return True
+
+    def set_led(self, led: int, state: bool) -> None:
+        pass
