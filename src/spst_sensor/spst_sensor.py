@@ -26,3 +26,6 @@ class SPSTSensor:
     def reset_threshold(self) -> None:
         self.creosote_threshold = CREOSOTE_THRESHOLD
         self.overfire_threshold = OVERFIRE_THRESHOLD
+
+    def get_sensor_data(self) -> int:
+        return 1
